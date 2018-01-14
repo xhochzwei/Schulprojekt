@@ -316,7 +316,8 @@ public class HttpVerticle extends AbstractVerticle {
             LOGGER.info("shop wird aufgerufen");
             String username = session.get("name");
             
-            String Gegenstand1 = routingContext.request().getParam("search"); 
+            String Gegenstand1 = routingContext.request().getParam("search1"); 
+            
             
             JsonObject request = new JsonObject().put("name", username);
             DeliveryOptions options = new DeliveryOptions().addHeader("action", "getKonto");

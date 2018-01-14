@@ -190,16 +190,20 @@ $(document).ready(function () {
     $(document).on("click", "#shop", function () {
         $("body").html("Willkommen im Shop <br>")
                 .append("Suchen: <input type='text' id='search'/><br>")
-                .append("<br><input type='button' value='Suchen' id='suche'/>");
+                .append("<br><input type='button' value='Suchen' id='suche'/>")
+                .append("<br><input type='button' value='Suchen' id='test'/>");
     });
+     $(document).on("click", "#suche", function(){
+         
+     });
     $(document).on("click", "#suche", function(){
                 $.post("../anfrage", {
                     typ: "Shopoffnen",
-                    search: $("#search").val()
+                    search1: $("#search").val()
                 },
                         function(data){
                            
-                                if (data.ItemPreis2 == "nonexistent"){
+                                if (data.ItemPreis == "nonexistent"){
                                     $("body").append("<br>Diesen Artikel gibt es nicht")
                                 }
                                 else{
