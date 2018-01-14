@@ -191,13 +191,17 @@ $(document).ready(function () {
         $("body").html("Willkommen im Shop <br>")
                 .append("Suchen: <input type='text' id='search'/><br>")
                 .append("<br><input type='button' value='Suchen' id='suche'/>")
-                .append("<br><input type='button' value='Suchen' id='test'/>");
+                .append("<br><input type='button' value='Waren' id='test'/>");
     });
      $(document).on("click", "#test", function(){
          $.post("../anfrage", {
                     typ: "zeigeItem",
                     
-                });
+                },
+                
+                 
+                 );
+                
      });
     $(document).on("click", "#suche", function(){
                 $.post("../anfrage", {
