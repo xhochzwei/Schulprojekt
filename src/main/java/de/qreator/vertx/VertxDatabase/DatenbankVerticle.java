@@ -28,6 +28,7 @@ public class DatenbankVerticle extends AbstractVerticle {
     private static final String SQL_ÜBERPRÜFE_ADRESSE =         "select adresse from user where name =?";
     private static final String SQL_ÜBERPRÜFE_ITEM =            "select name from item where name =?";
     private static final String SQL_DELETE =                    "drop table item";
+    private static final String SQL_ZEIGE_ITEMS =               "select name from item";
     private static final String SQL_ÜBERPRÜFE_PREIS     =       "select preis from item where name =?";
     private static final String USER_EXISTIERT = "USER_EXISITIERT";
     private static final String SQL_ÜBERPRÜFE_ITEMNAME = "select name from item where name =?";
@@ -95,7 +96,9 @@ public class DatenbankVerticle extends AbstractVerticle {
             case "uptKonto":
                 uptKonto(message);
                 break;
-            
+            case "zeigeItems":
+                test(message);
+                break;
             case "löscheItem":
                 löscheItem(message);
                 break;
@@ -310,7 +313,32 @@ public class DatenbankVerticle extends AbstractVerticle {
             }
         });
     }
-    
+    private void test(Message<JsonObject> message){
+        dbClient.getConnection(res -> {
+            if (res.succeeded()) {
+                SQLConnection con = res.result();
+                con.query(SQL_ZEIGE_ITEMS, baum -> {
+                    LOGGER.info("tut");
+                    if (baum.succeeded()) {
+                        LOGGER.info("tut2");
+                        List<JsonArray> liste = baum.result().getResults();
+                        for (int i = 0; i < liste.size(); i++) {
+                            
+                            
+                        
+                        JsonArray test = liste.get(i);
+                        JsonObject adf = new JsonObject().put("test", test.getString(0));
+                        LOGGER.info(adf.getString("test"));
+                        
+                       
+                    } LOGGER.info("" + liste.size());}
+                    else{
+                        LOGGER.error("Fehler" + baum.cause());
+                    }
+                });
+            }
+        });
+    }
     private void erstelleItem(Message<JsonObject> message){
         
         String name = message.body().getString("name");

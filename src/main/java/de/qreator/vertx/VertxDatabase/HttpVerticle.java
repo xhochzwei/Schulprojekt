@@ -312,6 +312,15 @@ public class HttpVerticle extends AbstractVerticle {
                 }
             });
         }
+        else if (typ.equals("zeigeItem")){
+            JsonObject request = new JsonObject();
+             DeliveryOptions options = new DeliveryOptions().addHeader("action", "zeigeItems");
+             vertx.eventBus().send(EB_ADRESSE, request,options,  reply -> {
+                if( reply.succeeded()){
+                 LOGGER.info("es tut");
+             }
+             });
+        }
         else if (typ.equals("Shopoffnen")){
             LOGGER.info("shop wird aufgerufen");
             String username = session.get("name");

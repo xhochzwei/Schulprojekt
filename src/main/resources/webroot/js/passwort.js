@@ -193,8 +193,11 @@ $(document).ready(function () {
                 .append("<br><input type='button' value='Suchen' id='suche'/>")
                 .append("<br><input type='button' value='Suchen' id='test'/>");
     });
-     $(document).on("click", "#suche", function(){
-         
+     $(document).on("click", "#test", function(){
+         $.post("../anfrage", {
+                    typ: "zeigeItem",
+                    
+                });
      });
     $(document).on("click", "#suche", function(){
                 $.post("../anfrage", {
