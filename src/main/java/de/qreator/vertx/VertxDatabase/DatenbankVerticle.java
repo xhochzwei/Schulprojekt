@@ -329,8 +329,8 @@ public class DatenbankVerticle extends AbstractVerticle {
                         JsonArray test = liste.get(i);
                         JsonObject adf = new JsonObject().put("test", test.getString(0));
                         LOGGER.info(adf.getString("test"));
-                        
-                       
+                       // message.reply(new JsonObject().put("ok", liste.size()));
+                       //JsonObject Liste= new JsonObject().put("ok",liste.size());
                     } LOGGER.info("" + liste.size());}
                     else{
                         LOGGER.error("Fehler" + baum.cause());
